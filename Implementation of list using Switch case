@@ -1,0 +1,163 @@
+#include <stdio.h>
+#define MAX 100
+
+int list[MAX];
+int size = 0, i;
+
+// Function to insert at the end
+void insertEnd(int item) {
+    if (size == MAX) {
+        printf("List is full!\n");
+        return;
+    }
+    list[size] = item;
+    size++;
+}
+
+// Function to insert at the beginning
+void insertBeginning(int item) {
+    if (size == MAX) {
+        printf("List is full!\n");
+        return;
+    }
+    for (i = size - 1; i >= 0; i--) {
+        list[i + 1] = list[i];
+    }
+    list[0] = item;
+    size++;
+}
+
+// Function to insert at specific position
+void insertAt(int item, int pos) {
+    if (size == MAX) {
+        printf("List is full!\n");
+        return;
+    }
+    if (pos < 0 || pos > size) {
+        printf("Invalid position!\n");
+        return;
+    }
+    for (i = size - 1; i >= pos; i--) {
+        list[i + 1] = list[i];
+    }
+    list[pos] = item;
+    size++;
+}
+
+// Function to delete from end
+void deleteEnd() {
+    if (size == 0) {
+        printf("List is empty!\n");
+        return;
+    }
+    size--;
+}
+
+// Function to delete from beginning
+void deleteBeginning() {
+    if (size == 0) {
+        printf("List is empty!\n");
+        return;
+    }
+    for (i = 0; i < size - 1; i++) {
+        list[i] = list[i + 1];
+    }
+    size--;
+}
+
+// Function to delete from specific position
+void deleteAt(int pos) {
+    if (size == 0) {
+        printf("List is empty!\n");
+        return;
+    }
+    if (pos < 0 || pos >= size) {
+        printf("Invalid position!\n");
+        return;
+    }
+    for (i = pos; i < size - 1; i++) {
+        list[i] = list[i + 1];
+    }
+    size--;
+}
+
+// Function to traverse
+void traverse() {
+    if (size == 0) {
+        printf("List is empty!\n");
+        return;
+    }
+    printf("List elements: ");
+    for (i = 0; i < size; i++) {
+        printf("%d ", list[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int choice, item, pos;
+
+    while (1) {
+        printf("\n===== MENU =====\n");
+        printf("1. Insert at End\n");
+        printf("2. Insert at Beginning\n");
+        printf("3. Insert at Position\n");
+        printf("4. Delete from End\n");
+        printf("5. Delete from Beginning\n");
+        printf("6. Delete from Position\n");
+        printf("7. Traverse List\n");
+        printf("8. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+
+            case 1:
+                printf("Enter value: ");
+                scanf("%d", &item);
+                insertEnd(item);
+                break;
+
+            case 2:
+                printf("Enter value: ");
+                scanf("%d", &item);
+                insertBeginning(item);
+                break;
+
+            case 3:
+                printf("Enter value: ");
+                scanf("%d", &item);
+                printf("Enter position: ");
+                scanf("%d", &pos);
+                insertAt(item, pos);
+                break;
+
+            case 4:
+                deleteEnd();
+                break;
+
+            case 5:
+                deleteBeginning();
+                break;
+
+            case 6:
+                printf("Enter position: ");
+                scanf("%d", &pos);
+                deleteAt(pos);
+                break;
+
+            case 7:
+                traverse();
+                break;
+
+            case 8:
+                printf("Exiting program...\n");
+                return 0;
+
+            default:
+                printf("Invalid choice!\n");
+        }
+    }
+
+    return 0;
+}
