@@ -1,0 +1,71 @@
+#include <stdio.h>
+#define SIZE 100
+int stack[SIZE];
+int top=-1;
+//function to check if the stack is full
+
+int isFull()
+{
+	if(top==SIZE-1)
+	return 1; 
+	else 
+	return 0;
+}
+
+//function to check if the stack is empty 
+int isEmpty(){
+	if (top==-1)
+	return 1;
+	else return 0;
+}
+
+//function to push an element into stack 
+void push(int item){
+	if(!isFull())
+	{
+		top++;
+		stack[top]=item;
+		printf("%d pushed to the stack.\n",item);
+	}
+	else{
+		printf("stack overflow! cannot push.\n",item);
+	}}
+	 
+//function to pop element to stack 
+void pop(){
+	if(!isEmpty())
+	{
+		int item = stack[top];
+		top--;
+		printf("%d popped form the stack.\n",item);
+	}
+	else{
+		printf("Stack underflow!\n");
+	}
+}
+
+	// Function to display stack elements
+void display() {
+	int i;
+    if (isEmpty()) {
+        printf("Stack is empty.\n");
+    } else {
+        printf("Stack elements: ");
+        for (i = 0; i <= top; i++) {
+            printf("%d ", stack[i]);
+        }
+        printf("\n");
+    }
+}
+	
+	//actual body
+	int main (){
+		push(10);
+		push(20);
+		push(30);
+	    pop();
+	    push(50);
+	    push(70);
+		display();
+		return 0;
+	}
